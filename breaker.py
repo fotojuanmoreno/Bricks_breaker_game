@@ -25,7 +25,6 @@ COLOR8 = (245,200,0)
 COLOR9 = (245,225,0)
 COLOR10 = (245,250,0)
 colores = [COLOR1, COLOR2, COLOR3, COLOR4, COLOR5, COLOR6, COLOR7, COLOR8, COLOR9, COLOR10]
-colores = [COLOR1]
 
 def main():
 	pygame.init()
@@ -33,13 +32,13 @@ def main():
 	score = 0
 	lives = 3
 
-	size = (100, 720)
+	size = (1080, 720)
 	screen = pygame.display.set_mode(size)
 	pygame.display.set_caption("Breaker game")
 
 	lista_sprites = pygame.sprite.Group()
 
-	base = Base(LIGHTBLUE, 1080, 10)
+	base = Base(LIGHTBLUE, 100, 10)
 	base.rect.x = (size[0]/2) - 50
 	base.rect.y = 700
 
@@ -152,7 +151,7 @@ def main():
 		text = font.render("Lives: " + str(lives), 1, WHITE)
 		screen.blit(text, (size[0]-110, 10))
 
-		if len(los_ladrillos) == 0:
+		if len(los_ladrillos) == 0 and lives > 0:
 			font = pygame.font.Font(None, 72)
 			text = font.render("NIVEL SUPERADO", 1, WHITE)
 			screen.blit(text, (((size[0]/2) - text.get_width() // 2, (size[1]/2) - text.get_height())))
@@ -168,7 +167,6 @@ def main():
 			clock.tick(10)
 
 			if event.type == MOUSEBUTTONDOWN:
-				print("He hecho clic")
 				running = False
 			elif event.type == KEYDOWN:
 				if event.key == pygame.K_SPACE:
